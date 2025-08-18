@@ -1,5 +1,16 @@
-<script setup>
-import { defineSlots } from "vue";
+<script setup lang="ts">
+import { ref } from "vue";
+
+// Sidebar state
+const drawer = ref(false);
+const cartCount = ref(3);
+
+// Toggle sidebar
+function toggleDrawer() {
+  drawer.value = !drawer.value;
+}
+
+// Assets (your icons)
 import chatLogo from "../assets/Chat.png";
 import favoritesLogo from "../assets/Favorites.png";
 import walletLogo from "../assets/Wallet.png";
@@ -8,12 +19,52 @@ import placeAdLogo from "../assets/Place_Ad.png";
 import InvestLogo from "../assets/Invest.png";
 import HomeLogo from "../assets/Home.png";
 import SettingLogo from "../assets/Settings.png";
+import GroupImg from "../assets/GroupImg.png";
 </script>
 
 <template>
   <v-layout>
-    <!-- Sidebar -->
-    <v-navigation-drawer permanent :width="80">
+    <!-- TOP APP BAR -->
+    <!-- TOP APP BAR -->
+    <v-app-bar app flat color="white" class="px-4">
+      <!-- Hamburger (only when sidebar is closed) -->
+      <v-app-bar-nav-icon v-if="!drawer" @click="toggleDrawer" />
+
+      <!-- Logo (bigger now) -->
+      <v-img :src="GroupImg" max-width="90" class="ml-2"></v-img>
+
+      <!-- Left Links (smaller text) -->
+      <v-btn variant="text" class="ml-16 small-link">How It Works?</v-btn>
+      <v-btn variant="text" class="ml-2 small-link">Help & Support</v-btn>
+
+      <!-- Push rest to right -->
+      <v-spacer />
+
+      <!-- Right Icons -->
+      <v-btn icon>
+        <v-icon>mdi-earth</v-icon>
+      </v-btn>
+
+      <v-badge :content="cartCount" color="yellow-darken-2" overlap>
+        <v-btn icon>
+          <v-icon>mdi-cart</v-icon>
+        </v-btn>
+      </v-badge>
+
+      <v-avatar size="36" class="ml-3">
+        <v-img src="https://randomuser.me/api/portraits/men/32.jpg" />
+      </v-avatar>
+      <span class="ml-2">M. Khalid Saied</span>
+    </v-app-bar>
+
+    <!-- SIDEBAR (drawer) -->
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      temporary
+      :width="80"
+      @click:outside="drawer = false"
+    >
       <v-list color="transparent" class="d-flex flex-column align-center">
         <!-- Place Ad button -->
         <v-btn
@@ -31,27 +82,27 @@ import SettingLogo from "../assets/Settings.png";
         <span class="place-ad-text">Place<br />Ad</span>
 
         <!-- Other Icon Buttons -->
-        <v-btn icon class="mb-3 custom-icon-btn"
-          ><img :src="HomeLogo" alt="Home"
-        /></v-btn>
-        <v-btn icon class="mb-3 custom-icon-btn"
-          ><img :src="favoritesLogo" alt="Favorites"
-        /></v-btn>
-        <v-btn icon class="mb-3 custom-icon-btn"
-          ><img :src="bagLogo" alt="Bag"
-        /></v-btn>
-        <v-btn icon class="mb-3 custom-icon-btn"
-          ><img :src="chatLogo" alt="Chat"
-        /></v-btn>
-        <v-btn icon class="mb-3 custom-icon-btn"
-          ><img :src="walletLogo" alt="Wallet"
-        /></v-btn>
-        <v-btn icon class="mb-3 custom-icon-btn"
-          ><img :src="SettingLogo" alt="Setting"
-        /></v-btn>
+        <v-btn icon class="mb-3 custom-icon-btn">
+          <img :src="HomeLogo" alt="Home" />
+        </v-btn>
+        <v-btn icon class="mb-3 custom-icon-btn">
+          <img :src="favoritesLogo" alt="Favorites" />
+        </v-btn>
+        <v-btn icon class="mb-3 custom-icon-btn">
+          <img :src="bagLogo" alt="Bag" />
+        </v-btn>
+        <v-btn icon class="mb-3 custom-icon-btn">
+          <img :src="chatLogo" alt="Chat" />
+        </v-btn>
+        <v-btn icon class="mb-3 custom-icon-btn">
+          <img :src="walletLogo" alt="Wallet" />
+        </v-btn>
+        <v-btn icon class="mb-3 custom-icon-btn">
+          <img :src="SettingLogo" alt="Setting" />
+        </v-btn>
       </v-list>
 
-      <!-- Logout button at bottom -->
+      <!-- Logout at bottom -->
       <template v-slot:append>
         <div class="pa-2 d-flex justify-center">
           <v-btn icon>
@@ -61,7 +112,7 @@ import SettingLogo from "../assets/Settings.png";
       </template>
     </v-navigation-drawer>
 
-    <!-- Page content -->
+    <!-- MAIN CONTENT -->
     <v-main>
       <slot />
     </v-main>
@@ -86,5 +137,9 @@ import SettingLogo from "../assets/Settings.png";
   font-size: 12px;
   font-weight: 500;
   display: block;
+}
+.small-link {
+  font-size: 13px;
+  font-weight: 400;
 }
 </style>
