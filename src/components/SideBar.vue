@@ -31,7 +31,7 @@ import GroupImg from "../assets/GroupImg.png";
       <v-app-bar-nav-icon v-if="!drawer" @click="toggleDrawer" />
 
       <!-- Logo (bigger now) -->
-      <v-img :src="GroupImg" max-width="90" class="ml-2"></v-img>
+      <v-img :src="GroupImg" max-width="90" class="ml-2 logo-img"></v-img>
 
       <!-- Left Links (smaller text) -->
       <v-btn variant="text" class="ml-16 small-link">How It Works?</v-btn>
@@ -45,8 +45,13 @@ import GroupImg from "../assets/GroupImg.png";
         <v-icon>mdi-earth</v-icon>
       </v-btn>
 
-      <v-badge :content="cartCount" color="yellow-darken-2" overlap>
-        <v-btn icon>
+      <v-badge
+        :content="cartCount"
+        color="yellow-darken-2"
+        overlap
+        class="cart-badge"
+      >
+        <v-btn icon class="cart-btn">
           <v-icon>mdi-cart</v-icon>
         </v-btn>
       </v-badge>
@@ -120,6 +125,26 @@ import GroupImg from "../assets/GroupImg.png";
 </template>
 
 <style scoped>
+.cart-badge {
+  .cart-badge {
+    --v-badge-offset-x: 8px; /* move right */
+    --v-badge-offset-y: -8px; /* move up */
+  }
+}
+
+.cart-badge .v-badge__badge {
+  font-size: 12px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.cart-btn {
+  padding: 0 !important; /* remove extra button padding */
+  margin: 0 !important; /* remove any margin */
+}
+
 .custom-icon-btn {
   width: 32px;
   height: 32px;
