@@ -7,13 +7,13 @@
       <!-- New tag -->
       <div class="badge-left">New</div>
 
-      <!-- Second icon (using Newlogo for now) -->
+      <!-- New logo (click here adds to favourites) -->
       <div class="badge-center">
-        <img :src="Newlogo" alt="Icon" class="icon-img" />
+        <img :src="Newlogo" alt="Add to favourite" class="icon-img" />
       </div>
 
       <!-- Like icon -->
-      <div class="badge-right">
+      <div class="badge-right" @click.stop.prevent="addToFavourites(product)">
         <img :src="Likelogo" alt="Like" class="icon-img" />
       </div>
     </div>
@@ -46,6 +46,7 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import { useFavoritesStore } from "../stores/favoriteStore";
 import Newlogo from "../assets/New.png";
 import Likelogo from "../assets/Like.png";
 
@@ -53,7 +54,7 @@ import Likelogo from "../assets/Like.png";
 const UserIcon = "https://randomuser.me/api/portraits/men/32.jpg";
 
 const router = useRouter();
-
+const favouritesStore = useFavoritesStore();
 const props = defineProps({
   product: {
     type: Object,
@@ -63,6 +64,11 @@ const props = defineProps({
 
 function goToProduct() {
   router.push(`/item/${props.product.id}`);
+}
+function addToFavourites(product) {
+  console.log(product);
+  favouritesStore.toggleFavorite(product);
+  console.log("Added to favourites:", product.title);
 }
 </script>
 
