@@ -92,9 +92,11 @@ import GroupImg from "../assets/GroupImg.png";
         <v-btn icon class="mb-3 custom-icon-btn">
           <img :src="HomeLogo" alt="Home" />
         </v-btn>
-        <v-btn icon class="mb-3 custom-icon-btn">
+        <!----------------------------------------------------------------------------------- favorite Icons -->
+        <v-btn icon class="mb-3 custom-icon-btn" :to="'/favorite'" router>
           <img :src="favoritesLogo" alt="Favorites" />
         </v-btn>
+
         <v-btn icon class="mb-3 custom-icon-btn">
           <img :src="bagLogo" alt="Bag" />
         </v-btn>

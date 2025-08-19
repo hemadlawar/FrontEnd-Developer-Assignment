@@ -7,7 +7,6 @@
 
     <!-- Show favorite products -->
     <div v-else class="favorites-grid">
-      <pre>{{ items }}</pre>
       <ProductCard
         v-for="product in items"
         :key="product.id"

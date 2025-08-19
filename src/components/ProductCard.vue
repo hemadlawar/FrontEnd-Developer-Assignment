@@ -67,7 +67,7 @@ function goToProduct() {
 function addToFavourites(product) {
   console.log(product);
   favouritesStore.toggleFavorite(product);
-  router.push("/favorite");
+  //router.push("/favorite");
   console.log("Added to favourites:", product.title);
 }
 </script>
