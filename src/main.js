@@ -2,7 +2,7 @@
 import { createApp } from "vue";
 import "./style.css";
 import App from "./App.vue";
-
+import { createPinia } from "pinia";
 // ✅ Import Vuetify
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
@@ -24,6 +24,9 @@ const vuetify = createVuetify({
 
 // ✅ Create the Vue app instance
 const app = createApp(App);
+const pinia = createPinia();
+
+app.use(pinia);
 
 // ✅ Register plugins
 app.use(vuetify);

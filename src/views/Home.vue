@@ -26,7 +26,7 @@
           <v-col cols="12" sm="6" md="2" lg="1" class="category-col">
             <v-select
               v-model="selectedCategory"
-              :items="categories"
+              :items="['All', ...categories]"
               placeholder="Category"
               variant="outlined"
               density="comfortable"
@@ -97,7 +97,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useCategoryStore } from "../stores/categoryStore";
 import Slider from "../components/Sliders.vue";
 
 const search = ref("");
@@ -107,7 +108,6 @@ const selectedPrice = ref(null);
 const express = ref(false);
 const sortBy = ref(null);
 
-const categories = ["All", "Electronics", "Clothing", "Books"];
 const brands = ["Apple", "Samsung", "Nike", "Adidas"];
 const priceRanges = ["$0 - $50", "$50 - $100", "$100 - $500", "$500+"];
 const sortOptions = [
@@ -116,6 +116,15 @@ const sortOptions = [
   "Price: Low to High",
   "Price: High to Low",
 ];
+
+// Use Pinia store
+const categoryStore = useCategoryStore();
+const { categories, fetchCategories } = categoryStore;
+
+// Fetch categories when component mounts
+onMounted(() => {
+  fetchCategories();
+});
 </script>
 
 <style scoped>
