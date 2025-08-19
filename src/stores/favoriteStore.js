@@ -6,10 +6,10 @@ export const useFavoritesStore = defineStore("favorites", {
   }),
   actions: {
     toggleFavorite(product) {
-      const exists = this.items.find((p) => p.id === product.id);
-      if (exists) {
-        // remove if already in favorites
-        this.items = this.items.filter((p) => p.id !== product.id);
+      const index = this.items.findIndex((p) => p.id === product.id);
+      if (index !== -1) {
+        // remove if already in favorites (mutate in place)
+        this.items.splice(index, 1);
       } else {
         // add to favorites
         this.items.push(product);

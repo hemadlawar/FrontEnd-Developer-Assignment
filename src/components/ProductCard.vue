@@ -1,5 +1,5 @@
 <template>
-  <v-card class="product-card" @click="goToProduct">
+  <v-card class="product-card">
     <!-- Image section with top icons -->
     <div class="image-wrapper">
       <v-img :src="product.image" height="200px" contain />
@@ -12,8 +12,7 @@
         <img :src="Newlogo" alt="Add to favourite" class="icon-img" />
       </div>
 
-      <!-- Like icon -->
-      <div class="badge-right" @click.stop.prevent="addToFavourites(product)">
+      <div class="badge-right" @click.stop="addToFavourites(product)">
         <img :src="Likelogo" alt="Like" class="icon-img" />
       </div>
     </div>
@@ -26,7 +25,7 @@
     <v-card-subtitle> ${{ product.price }} </v-card-subtitle>
 
     <!-- Seller & Rating section -->
-    <div class="seller-rating">
+    <div class="seller-rating" @click="goToProduct">
       <img :src="UserIcon" alt="Seller" class="seller-avatar" />
       <span class="seller-name">Khalid S.</span>
       <v-icon color="green" small>mdi-check-decagram</v-icon>
@@ -68,6 +67,7 @@ function goToProduct() {
 function addToFavourites(product) {
   console.log(product);
   favouritesStore.toggleFavorite(product);
+  router.push("/favorite");
   console.log("Added to favourites:", product.title);
 }
 </script>

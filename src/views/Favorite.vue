@@ -1,12 +1,15 @@
 <template>
   <div class="favorites-page">
     <h1>Favorite Page</h1>
-    <div v-if="favouritesStore.items.length === 0" class="empty">
-      No favorite products yet.
-    </div>
-    <div class="favorites-grid">
+
+    <!-- Show empty message -->
+    <div v-if="items.length === 0" class="empty">No favorite products yet.</div>
+
+    <!-- Show favorite products -->
+    <div v-else class="favorites-grid">
+      <pre>{{ items }}</pre>
       <ProductCard
-        v-for="product in favouritesStore.items"
+        v-for="product in items"
         :key="product.id"
         :product="product"
       />
@@ -16,9 +19,11 @@
 
 <script setup>
 import { useFavoritesStore } from "../stores/favoriteStore";
-import ProductCard from "../components/ProductCard.vue";
+import { storeToRefs } from "pinia";
+import ProductCard from "../components/ProductCard.vue"; // ✅ import
 
 const favouritesStore = useFavoritesStore();
+const { items } = storeToRefs(favouritesStore); // reactive
 </script>
 
 <style scoped>
