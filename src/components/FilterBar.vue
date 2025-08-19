@@ -106,7 +106,7 @@ import { useCategoryStore } from "../stores/categoryStore";
 import { useProductStore } from "../stores/ProductStore";
 import ProductCard from "../components/ProductCard.vue";
 const search = ref("");
-const selectedCategory = ref("All");
+const selectedCategory = ref(null);
 const sortBy = ref(null);
 const selectedBrand = ref(null);
 const selectedPrice = ref(null);
