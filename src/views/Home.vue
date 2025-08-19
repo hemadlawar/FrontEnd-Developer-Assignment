@@ -6,9 +6,10 @@
         <Slider />
 
         <!-- Filter Bar -->
+        <!-- Filter Bar -->
         <v-row class="align-center mt-6 filter-bar" no-gutters>
           <!-- Search -->
-          <v-col cols="12" sm="3">
+          <v-col cols="12" sm="6" md="4" lg="3">
             <v-text-field
               v-model="search"
               placeholder="Search Item or Brand .."
@@ -22,7 +23,7 @@
           </v-col>
 
           <!-- Category -->
-          <v-col cols="12" sm="1" class="category-col">
+          <v-col cols="12" sm="6" md="2" lg="1" class="category-col">
             <v-select
               v-model="selectedCategory"
               :items="categories"
@@ -36,7 +37,7 @@
           </v-col>
 
           <!-- Brand -->
-          <v-col cols="12" sm="1" class="brand-col">
+          <v-col cols="12" sm="6" md="2" lg="1" class="brand-col">
             <v-select
               v-model="selectedBrand"
               :items="brands"
@@ -50,7 +51,7 @@
           </v-col>
 
           <!-- Price Range -->
-          <v-col cols="12" sm="1">
+          <v-col cols="12" sm="6" md="2" lg="1">
             <v-select
               v-model="selectedPrice"
               :items="priceRanges"
@@ -64,14 +65,14 @@
           </v-col>
 
           <!-- Express Toggle -->
-          <v-col cols="12" sm="2" class="d-flex align-center">
+          <v-col cols="12" sm="6" md="3" lg="2" class="d-flex align-center">
             <v-icon class="mr-1">mdi-truck-delivery</v-icon>
             <span class="mr-2">Express</span>
             <v-switch v-model="express" hide-details density="compact" inset />
           </v-col>
 
           <!-- Sort Dropdown -->
-          <v-col cols="12" sm="2">
+          <v-col cols="12" sm="6" md="3" lg="2">
             <v-select
               v-model="sortBy"
               :items="sortOptions"
@@ -84,7 +85,7 @@
           </v-col>
 
           <!-- Filter Button -->
-          <v-col cols="12" sm="1" class="d-flex justify-center">
+          <v-col cols="12" sm="6" md="2" lg="1" class="d-flex justify-center">
             <v-btn icon variant="outlined" class="filter-btn">
               <v-icon>mdi-filter-variant</v-icon>
             </v-btn>
@@ -135,6 +136,16 @@ const sortOptions = [
   .filter-bar {
     flex-wrap: wrap !important;
     gap: 12px;
+  }
+  .category-col {
+    margin-right: 0; /* remove forced margin */
+  }
+}
+/* For tablets (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .filter-bar {
+    flex-wrap: wrap !important;
+    gap: 16px;
   }
   .category-col {
     margin-right: 0; /* remove forced margin */
