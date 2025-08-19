@@ -56,14 +56,6 @@
 <script setup>
 const products = [
   {
-    brand: "American Eagle",
-    name: "Crossbody Bucket Bag",
-    price: "IQD 2,900",
-    sizes: ["M", "L", "XL"],
-    image: "https://picsum.photos/id/180/200/200",
-    bgColor: "#4A4A4A",
-  },
-  {
     brand: "Nike",
     name: "Running Shoes",
     price: "IQD 75,000",
@@ -107,28 +99,31 @@ const products = [
 </script>
 
 <style scoped>
-/* Make cards responsive */
+/* Default (Desktop & Tablet) */
 .product-card {
-  width: 100%; /* Always full width */
-  max-width: 600px; /* On desktop: cap at 600px */
-  min-width: 260px; /* Don’t shrink too much */
+  width: 100%;
+  max-width: 600px;
+  min-width: 280px;
+  min-height: 220px; /* slightly taller */
 }
 
 /* Image scaling */
 .product-image {
-  max-width: 120px;
-  max-height: 120px;
+  max-width: 130px;
+  max-height: 130px;
 }
 
+/* Mobile */
 @media (max-width: 600px) {
   .product-card {
-    max-width: 100% !important; /* Take full width on mobile */
-    margin: 0 auto; /* Center in viewport */
+    max-width: 90% !important; /* only one card visible */
+    min-height: 180px; /* smaller height on mobile */
+    margin: 0 auto; /* center */
   }
 
   .product-image {
-    max-width: 80px;
-    max-height: 80px;
+    max-width: 90px;
+    max-height: 90px;
   }
 }
 </style>
