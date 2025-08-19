@@ -4,37 +4,28 @@
       <v-card
         class="ma-3 pa-4 d-flex align-center product-card"
         :style="{ backgroundColor: product.bgColor, color: 'white' }"
-        rounded="xl"
-        elevation="5"
+        elevation="3"
       >
         <v-row no-gutters class="w-100">
           <!-- Left side (Details) -->
           <v-col
             cols="12"
             sm="7"
-            class="d-flex flex-column justify-center text-center text-sm-left"
+            class="d-flex flex-column justify-center text-left"
           >
-            <h4 class="font-weight-bold">{{ product.brand }}</h4>
+            <h4 class="font-weight-bold mb-2">{{ product.brand }}</h4>
             <p class="mb-1">{{ product.name }}</p>
-            <h3 class="font-weight-bold">{{ product.price }}</h3>
+            <h3 class="font-weight-bold mb-2">{{ product.price }}</h3>
             <div>
-              <span v-for="size in product.sizes" :key="size" class="mr-2">
-                {{ size }}
-              </span>
+              <span v-for="size in product.sizes" :key="size" class="mr-2">{{
+                size
+              }}</span>
             </div>
           </v-col>
 
           <!-- Right side (Image) -->
-          <v-col
-            cols="12"
-            sm="5"
-            class="d-flex justify-center align-center mt-3 mt-sm-0"
-          >
-            <v-img
-              :src="product.image"
-              class="rounded-lg product-image"
-              cover
-            />
+          <v-col cols="12" sm="5" class="d-flex justify-center align-center">
+            <v-img :src="product.image" class="product-image" cover />
           </v-col>
         </v-row>
       </v-card>
@@ -45,44 +36,44 @@
 <script setup>
 const products = [
   {
-    brand: "Nike",
-    name: "Running Shoes",
-    price: "IQD 75,000",
-    sizes: ["40", "41", "42", "43"],
-    image: "https://picsum.photos/id/21/200/200",
-    bgColor: "#1976D2",
-  },
-  {
-    brand: "Apple",
-    name: "AirPods Pro",
-    price: "IQD 285,000",
-    sizes: ["—"],
-    image: "https://picsum.photos/id/29/200/200",
-    bgColor: "#2E7D32",
-  },
-  {
-    brand: "Samsung",
-    name: "Galaxy Watch",
-    price: "IQD 210,000",
-    sizes: ["S", "M", "L"],
-    image: "https://picsum.photos/id/1062/200/200",
-    bgColor: "#6A1B9A",
-  },
-  {
-    brand: "Gucci",
-    name: "Leather Belt",
-    price: "IQD 120,000",
-    sizes: ["S", "M", "L", "XL"],
-    image: "https://picsum.photos/id/1076/200/200",
-    bgColor: "#D84315",
-  },
-  {
-    brand: "Zara",
-    name: "Denim Jacket",
-    price: "IQD 89,000",
+    brand: "American Eagle",
+    name: "Crossbody Bucket Bag",
+    price: "IQD 2,900",
     sizes: ["M", "L", "XL"],
-    image: "https://picsum.photos/id/1068/200/200",
-    bgColor: "#00838F",
+    image: "https://picsum.photos/id/21/400/300",
+    bgColor: "#f18875",
+  },
+  {
+    brand: "American Eagle",
+    name: "Crossbody Bucket Bag",
+    price: "IQD 2,900",
+    sizes: ["M", "L", "XL"],
+    image: "https://picsum.photos/id/1062/400/300",
+    bgColor: "#4E4E4E",
+  },
+  {
+    brand: "American Eagle",
+    name: "Crossbody Bucket Bag",
+    price: "IQD 2,900",
+    sizes: ["M", "L", "XL"],
+    image: "https://picsum.photos/id/1076/400/300",
+    bgColor: "#00A88F",
+  },
+  {
+    brand: "American Eagle",
+    name: "Crossbody Bucket Bag",
+    price: "IQD 2,900",
+    sizes: ["M", "L", "XL"],
+    image: "https://picsum.photos/id/1062/400/300",
+    bgColor: "#4E4E4E",
+  },
+  {
+    brand: "American Eagle",
+    name: "Crossbody Bucket Bag",
+    price: "IQD 2,900",
+    sizes: ["M", "L", "XL"],
+    image: "https://picsum.photos/id/1062/400/300",
+    bgColor: "#4E4E4E",
   },
 ];
 </script>
@@ -90,26 +81,46 @@ const products = [
 <style scoped>
 .product-card {
   width: 100%;
-  max-width: 650px; /* slightly increased from 600px */
-  min-width: 300px; /* slightly larger minimum width */
-  min-height: 220px;
+  max-width: 420px;
+  min-width: 360px;
+  height: 180px;
+  border-radius: 12px; /* soft rounded corners */
+  display: flex;
+  align-items: center;
 }
 
 .product-image {
-  max-width: 140px; /* slightly larger image */
-  max-height: 140px;
+  width: 130px;
+  height: 130px;
+  border-radius: 10px; /* rounded image corners */
+  object-fit: cover;
 }
 
+/* Desktop */
+@media (min-width: 960px) {
+  .product-card {
+    max-width: 480px;
+    height: 200px;
+    border-radius: 20px; /* slightly more on bigger screens */
+  }
+  .product-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 12px;
+  }
+}
+
+/* Mobile */
 @media (max-width: 600px) {
   .product-card {
-    max-width: 95% !important; /* slightly wider on mobile */
-    min-height: 180px;
-    margin: 0 auto;
+    max-width: 95% !important;
+    height: auto;
+    border-radius: 10px !important;
   }
-
   .product-image {
-    max-width: 95px;
-    max-height: 95px;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
   }
 }
 </style>
