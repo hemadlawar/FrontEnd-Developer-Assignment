@@ -1,5 +1,5 @@
 <template>
-  <v-card class="product-card">
+  <v-card class="product-card" @click="goToProduct">
     <v-img :src="product.image" height="200px" cover />
     <v-card-title class="text-truncate">{{ product.title }}</v-card-title>
     <v-card-subtitle>${{ product.price }}</v-card-subtitle>
@@ -7,12 +7,20 @@
 </template>
 
 <script setup>
-defineProps({
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const props = defineProps({
   product: {
     type: Object,
     required: true,
   },
 });
+
+function goToProduct() {
+  router.push(`/item/${props.product.id}`);
+}
 </script>
 
 <style scoped>
