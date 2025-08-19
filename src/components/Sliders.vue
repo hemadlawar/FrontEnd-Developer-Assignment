@@ -40,7 +40,7 @@ const products = [
     name: "Crossbody Bucket Bag",
     price: "IQD 2,900",
     sizes: ["M", "L", "XL"],
-    image: "https://picsum.photos/id/21/400/300",
+    image: "https://m.media-amazon.com/images/I/71NSrCsNoUL._UY350_.jpg",
     bgColor: "#f18875",
   },
   {
@@ -48,7 +48,7 @@ const products = [
     name: "Crossbody Bucket Bag",
     price: "IQD 2,900",
     sizes: ["M", "L", "XL"],
-    image: "https://picsum.photos/id/1062/400/300",
+    image: "https://m.media-amazon.com/images/I/71NSrCsNoUL._UY350_.jpg",
     bgColor: "#4E4E4E",
   },
   {
@@ -56,7 +56,7 @@ const products = [
     name: "Crossbody Bucket Bag",
     price: "IQD 2,900",
     sizes: ["M", "L", "XL"],
-    image: "https://picsum.photos/id/1076/400/300",
+    image: "https://m.media-amazon.com/images/I/71NSrCsNoUL._UY350_.jpg",
     bgColor: "#00A88F",
   },
   {
@@ -64,15 +64,15 @@ const products = [
     name: "Crossbody Bucket Bag",
     price: "IQD 2,900",
     sizes: ["M", "L", "XL"],
-    image: "https://picsum.photos/id/1062/400/300",
-    bgColor: "#4E4E4E",
+    image: "https://m.media-amazon.com/images/I/71NSrCsNoUL._UY350_.jpg",
+    bgColor: "#ca19a8",
   },
   {
     brand: "American Eagle",
     name: "Crossbody Bucket Bag",
     price: "IQD 2,900",
     sizes: ["M", "L", "XL"],
-    image: "https://picsum.photos/id/1062/400/300",
+    image: "https://m.media-amazon.com/images/I/71NSrCsNoUL._UY350_.jpg",
     bgColor: "#4E4E4E",
   },
 ];
