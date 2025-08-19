@@ -118,22 +118,57 @@ const sortOptions = [
 </script>
 
 <style scoped>
-/* Make sure row stays in one line */
+/* Keep row in one line */
 .filter-bar {
   flex-wrap: nowrap !important;
   gap: 12px;
   overflow-x: auto; /* scroll on small screens */
 }
 
-/* Inputs/Selects style */
+/* Inputs/Selects container */
 .filter-input {
   border-radius: 12px;
   font-size: 14px;
 }
 
-.filter-input .v-field__input,
-.filter-input .v-field__placeholder {
-  color: black !important; /* placeholder and input text */
+/* ---------------------------
+   TEXT COLORS => BLACK
+   Use :deep() so styles apply
+   inside Vuetify components.
+----------------------------*/
+.filter-input :deep(.v-field-label),
+.filter-input :deep(.v-field__placeholder),
+.filter-input :deep(.v-field__input) {
+  color: #000 !important;
+  opacity: 1 !important;
+}
+
+/* Native input placeholder (v-text-field) */
+.filter-input :deep(input::placeholder) {
+  color: #000 !important;
+  opacity: 1 !important;
+}
+
+/* ---------------------------------
+   FIX ARROW OVERLAP IN v-select
+   Give input extra right padding
+   and keep arrow aligned at right.
+----------------------------------*/
+.filter-input :deep(.v-select .v-field__input) {
+  padding-right: 44px !important; /* room for the chevron */
+  white-space: nowrap; /* avoid wrapping under arrow */
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.filter-input :deep(.v-select .v-field__append-inner) {
+  margin-left: auto !important;
+  min-width: 36px; /* reserve space for the arrow */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  right: 6px; /* nudge if desired */
 }
 
 /* Filter button */
