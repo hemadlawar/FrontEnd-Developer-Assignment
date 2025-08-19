@@ -2,16 +2,12 @@
   <v-app>
     <v-main>
       <v-container>
-        <h2 class="text-center mb-6">Featured Products</h2>
-
         <!-- Product Cards Slider -->
         <v-slide-group show-arrows>
           <v-slide-group-item v-for="(product, i) in products" :key="i">
             <v-card
-              class="ma-3 pa-4 d-flex align-center"
+              class="ma-3 pa-4 d-flex align-center product-card"
               :style="{ backgroundColor: product.bgColor, color: 'white' }"
-              max-width="100%"
-              min-width="280"
               rounded="xl"
               elevation="5"
             >
@@ -20,7 +16,7 @@
                 <v-col
                   cols="12"
                   sm="7"
-                  class="d-flex flex-column justify-center"
+                  class="d-flex flex-column justify-center text-center text-sm-left"
                 >
                   <h4 class="font-weight-bold">{{ product.brand }}</h4>
                   <p class="mb-1">{{ product.name }}</p>
@@ -44,11 +40,9 @@
                 >
                   <v-img
                     :src="product.image"
-                    max-height="120"
-                    max-width="120"
-                    class="rounded-lg"
+                    class="rounded-lg product-image"
                     cover
-                  ></v-img>
+                  />
                 </v-col>
               </v-row>
             </v-card>
@@ -67,15 +61,7 @@ const products = [
     price: "IQD 2,900",
     sizes: ["M", "L", "XL"],
     image: "https://picsum.photos/id/180/200/200",
-    bgColor: "#4A4A4A", // dark gray
-  },
-  {
-    brand: "American Eagle",
-    name: "Crossbody Bucket Bag",
-    price: "IQD 2,900",
-    sizes: ["M", "L", "XL"],
-    image: "https://picsum.photos/id/250/200/200",
-    bgColor: "#F57C73", // coral
+    bgColor: "#4A4A4A",
   },
   {
     brand: "Nike",
@@ -83,7 +69,7 @@ const products = [
     price: "IQD 75,000",
     sizes: ["40", "41", "42", "43"],
     image: "https://picsum.photos/id/21/200/200",
-    bgColor: "#1976D2", // blue
+    bgColor: "#1976D2",
   },
   {
     brand: "Apple",
@@ -91,7 +77,7 @@ const products = [
     price: "IQD 285,000",
     sizes: ["—"],
     image: "https://picsum.photos/id/29/200/200",
-    bgColor: "#2E7D32", // green
+    bgColor: "#2E7D32",
   },
   {
     brand: "Samsung",
@@ -99,7 +85,7 @@ const products = [
     price: "IQD 210,000",
     sizes: ["S", "M", "L"],
     image: "https://picsum.photos/id/1062/200/200",
-    bgColor: "#6A1B9A", // purple
+    bgColor: "#6A1B9A",
   },
   {
     brand: "Gucci",
@@ -107,7 +93,7 @@ const products = [
     price: "IQD 120,000",
     sizes: ["S", "M", "L", "XL"],
     image: "https://picsum.photos/id/1076/200/200",
-    bgColor: "#D84315", // deep orange
+    bgColor: "#D84315",
   },
   {
     brand: "Zara",
@@ -115,7 +101,34 @@ const products = [
     price: "IQD 89,000",
     sizes: ["M", "L", "XL"],
     image: "https://picsum.photos/id/1068/200/200",
-    bgColor: "#00838F", // teal
+    bgColor: "#00838F",
   },
 ];
 </script>
+
+<style scoped>
+/* Make cards responsive */
+.product-card {
+  width: 100%; /* Always full width */
+  max-width: 600px; /* On desktop: cap at 600px */
+  min-width: 260px; /* Don’t shrink too much */
+}
+
+/* Image scaling */
+.product-image {
+  max-width: 120px;
+  max-height: 120px;
+}
+
+@media (max-width: 600px) {
+  .product-card {
+    max-width: 100% !important; /* Take full width on mobile */
+    margin: 0 auto; /* Center in viewport */
+  }
+
+  .product-image {
+    max-width: 80px;
+    max-height: 80px;
+  }
+}
+</style>
