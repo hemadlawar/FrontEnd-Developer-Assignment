@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-// Sidebar state
-const drawer = ref(false);
+// Cart count
 const cartCount = ref(3);
-
-// Toggle sidebar
-function toggleDrawer() {
-  drawer.value = !drawer.value;
-}
 
 // Assets (your icons)
 import chatLogo from "../assets/Chat.png";
@@ -25,15 +19,11 @@ import GroupImg from "../assets/GroupImg.png";
 <template>
   <v-layout>
     <!-- TOP APP BAR -->
-    <!-- TOP APP BAR -->
     <v-app-bar app flat color="white" class="px-4">
-      <!-- Hamburger (only when sidebar is closed) -->
-      <v-app-bar-nav-icon v-if="!drawer" @click="toggleDrawer" />
-
       <!-- Logo (bigger now) -->
       <v-img :src="GroupImg" max-width="90" class="ml-2 logo-img"></v-img>
 
-      <!-- Left Links (smaller text) -->
+      <!-- Left Links -->
       <v-btn variant="text" class="ml-16 small-link">How It Works?</v-btn>
       <v-btn variant="text" class="ml-2 small-link">Help & Support</v-btn>
 
@@ -62,14 +52,8 @@ import GroupImg from "../assets/GroupImg.png";
       <span class="ml-2">M. Khalid Saied</span>
     </v-app-bar>
 
-    <!-- SIDEBAR (drawer) -->
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      temporary
-      :width="80"
-      @click:outside="drawer = false"
-    >
+    <!-- PERMANENT SIDEBAR -->
+    <v-navigation-drawer app permanent :width="80">
       <v-list color="transparent" class="d-flex flex-column align-center">
         <!-- Place Ad button -->
         <v-btn
@@ -126,10 +110,8 @@ import GroupImg from "../assets/GroupImg.png";
 
 <style scoped>
 .cart-badge {
-  .cart-badge {
-    --v-badge-offset-x: 8px; /* move right */
-    --v-badge-offset-y: -8px; /* move up */
-  }
+  --v-badge-offset-x: 8px; /* move right */
+  --v-badge-offset-y: -8px; /* move up */
 }
 
 .cart-badge .v-badge__badge {
@@ -141,8 +123,8 @@ import GroupImg from "../assets/GroupImg.png";
 }
 
 .cart-btn {
-  padding: 0 !important; /* remove extra button padding */
-  margin: 0 !important; /* remove any margin */
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 .custom-icon-btn {
