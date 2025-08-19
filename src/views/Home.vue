@@ -31,7 +31,7 @@
               density="comfortable"
               hide-details
               clearable
-              class="filter-input"
+              class="filter-input category-select"
             />
           </v-col>
 
@@ -116,7 +116,6 @@ const sortOptions = [
   "Price: High to Low",
 ];
 </script>
-
 <style scoped>
 /* Keep row in one line */
 .filter-bar {
@@ -131,44 +130,49 @@ const sortOptions = [
   font-size: 14px;
 }
 
-/* ---------------------------
-   TEXT COLORS => BLACK
-   Use :deep() so styles apply
-   inside Vuetify components.
-----------------------------*/
+/* Text color -> black */
 .filter-input :deep(.v-field-label),
 .filter-input :deep(.v-field__placeholder),
 .filter-input :deep(.v-field__input) {
   color: #000 !important;
   opacity: 1 !important;
 }
-
-/* Native input placeholder (v-text-field) */
 .filter-input :deep(input::placeholder) {
   color: #000 !important;
   opacity: 1 !important;
 }
 
-/* ---------------------------------
-   FIX ARROW OVERLAP IN v-select
-   Give input extra right padding
-   and keep arrow aligned at right.
-----------------------------------*/
-.filter-input :deep(.v-select .v-field__input) {
-  padding-right: 44px !important; /* room for the chevron */
-  white-space: nowrap; /* avoid wrapping under arrow */
+/* ===================== ONLY CATEGORY FIX ===================== */
+/* Give the Category input enough space so text never hits icons */
+.category-select :deep(.v-field__input) {
+  padding-right: 72px !important; /* space for clear (x) + arrow */
+  white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.filter-input :deep(.v-select .v-field__append-inner) {
-  margin-left: auto !important;
-  min-width: 36px; /* reserve space for the arrow */
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  position: relative;
-  right: 6px; /* nudge if desired */
+/* Ensure arrow/clear keep Vuetify defaults & stay clickable */
+.category-select :deep(.v-field__append-inner),
+.category-select :deep(.v-field__clearable) {
+  position: static !important; /* reset any earlier absolute rules */
+  right: auto !important;
+  top: auto !important;
+  transform: none !important;
+  pointer-events: auto !important; /* arrow remains clickable */
+}
+
+/* Optional: tiny safety min-width so sm=1 doesn't crush completely */
+.category-select {
+  min-width: 110px; /* adjust or remove if you like */
+}
+/* ============================================================= */
+
+/* Remove any old rules that targeted a non-existent class */
+.filter-input :deep(.v-select__menu-icon) {
+  all: unset;
+}
+.filter-input :deep(.v-select .v-select__menu-icon) {
+  all: unset;
 }
 
 /* Filter button */
