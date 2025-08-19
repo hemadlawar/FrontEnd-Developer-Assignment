@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useDisplay } from "vuetify";
 
 // Cart count
 const cartCount = ref(3);
 
-// Assets (your icons)
+// Detect mobile screen
+const { mobile } = useDisplay();
+
+// Assets
 import chatLogo from "../assets/Chat.png";
 import favoritesLogo from "../assets/Favorites.png";
 import walletLogo from "../assets/Wallet.png";
 import bagLogo from "../assets/shopping-basket-svgrepo-com.png";
-import placeAdLogo from "../assets/Place_Ad.png";
 import InvestLogo from "../assets/Invest.png";
 import HomeLogo from "../assets/Home.png";
 import SettingLogo from "../assets/Settings.png";
@@ -17,17 +20,21 @@ import GroupImg from "../assets/GroupImg.png";
 </script>
 
 <template>
-  <v-layout>
-    <!-- TOP APP BAR -->
+  <v-app>
+    <!-- ✅ TOP NAVIGATION BAR -->
     <v-app-bar app flat color="white" class="px-4">
-      <!-- Logo (bigger now) -->
-      <v-img :src="GroupImg" max-width="90" class="ml-2 logo-img"></v-img>
+      <!-- Show logo only on desktop -->
+      <v-img
+        v-if="!mobile"
+        :src="GroupImg"
+        max-width="90"
+        class="ml-2 logo-img"
+      ></v-img>
 
       <!-- Left Links -->
       <v-btn variant="text" class="ml-16 small-link">How It Works?</v-btn>
       <v-btn variant="text" class="ml-2 small-link">Help & Support</v-btn>
 
-      <!-- Push rest to right -->
       <v-spacer />
 
       <!-- Right Icons -->
@@ -52,16 +59,27 @@ import GroupImg from "../assets/GroupImg.png";
       <span class="ml-2">M. Khalid Saied</span>
     </v-app-bar>
 
-    <!-- PERMANENT SIDEBAR -->
-    <v-navigation-drawer app permanent :width="80">
-      <v-list color="transparent" class="d-flex flex-column align-center">
-        <!-- Place Ad button -->
-        <v-btn
-          class="mb-2 place-ad-btn"
-          variant="text"
-          min-width="0"
-          elevation="0"
-        >
+    <!-- ✅ SIDEBAR -->
+    <v-navigation-drawer
+      app
+      permanent
+      :width="80"
+      :class="{ 'mobile-drawer': mobile }"
+    >
+      <v-list
+        color="transparent"
+        class="d-flex flex-column align-center sidebar-list"
+      >
+        <!-- Logo on mobile -->
+        <v-img
+          v-if="mobile"
+          :src="GroupImg"
+          max-width="60"
+          class="mb-4 mt-2"
+        ></v-img>
+
+        <!-- Place Ad -->
+        <v-btn class="mb-2 place-ad-btn" variant="text" min-width="0">
           <img
             :src="InvestLogo"
             alt="Invest"
@@ -70,7 +88,7 @@ import GroupImg from "../assets/GroupImg.png";
         </v-btn>
         <span class="place-ad-text">Place<br />Ad</span>
 
-        <!-- Other Icon Buttons -->
+        <!-- Other Icons -->
         <v-btn icon class="mb-3 custom-icon-btn">
           <img :src="HomeLogo" alt="Home" />
         </v-btn>
@@ -101,17 +119,39 @@ import GroupImg from "../assets/GroupImg.png";
       </template>
     </v-navigation-drawer>
 
-    <!-- MAIN CONTENT -->
+    <!-- ✅ MAIN CONTENT -->
     <v-main>
-      <slot />
+      <div class="pa-4">
+        <slot />
+      </div>
     </v-main>
-  </v-layout>
+  </v-app>
 </template>
 
 <style scoped>
+/* 📱 Mobile: sidebar starts BELOW the app bar */
+.mobile-drawer {
+  top: 56px !important; /* mobile app-bar height */
+  height: calc(100% - 56px) !important;
+}
+
+/* 💻 Desktop: sidebar starts BELOW larger app bar */
+@media (min-width: 600px) {
+  .mobile-drawer {
+    top: 64px !important; /* desktop app-bar height */
+    height: calc(100% - 64px) !important;
+  }
+}
+
+/* Push sidebar items down on mobile */
+.mobile-drawer .sidebar-list {
+  padding-top: 20px;
+}
+
+/* Cart badge styling */
 .cart-badge {
-  --v-badge-offset-x: 8px; /* move right */
-  --v-badge-offset-y: -8px; /* move up */
+  --v-badge-offset-x: 8px;
+  --v-badge-offset-y: -8px;
 }
 
 .cart-badge .v-badge__badge {
@@ -145,6 +185,7 @@ import GroupImg from "../assets/GroupImg.png";
   font-weight: 500;
   display: block;
 }
+
 .small-link {
   font-size: 13px;
   font-weight: 400;
