@@ -24,13 +24,34 @@
 
           <!-- Add New Button -->
           <div class="addnewbutton">
-            <span class="add-text">+ ADD</span>
-            <span class="new-text">New</span>
+            <span class="plus">+</span>
+            <div class="text-row">
+              <span>ADD</span>
+              <span>NEW</span>
+            </div>
           </div>
         </div>
 
-        <button class="btn">Standard Delivery</button>
-        <button class="btn highlight">Express Delivery</button>
+        <!-- Delivery Options side by side -->
+        <div class="delivery-options-row">
+          <!-- Standard Delivery -->
+          <div class="delivery-box">
+            <div class="top-row">
+              <span class="title">Standard Delivery</span>
+              <button class="price-btn">Free</button>
+            </div>
+            <span class="time">(5–7 Days)</span>
+          </div>
+
+          <!-- Express Delivery -->
+          <div class="delivery-box">
+            <div class="top-row">
+              <span class="title">Express Delivery</span>
+              <button class="price-btn">+15 IQD</button>
+            </div>
+            <span class="time">(1–2 Days)</span>
+          </div>
+        </div>
       </div>
 
       <button class="add-cart">Add to Cart</button>
@@ -47,7 +68,7 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  max-width: 900px;
+  max-width: 1100px; /* wider page */
   margin: 40px auto;
   background: white;
   border-radius: 16px;
@@ -67,7 +88,7 @@ export default {
 
 .card {
   flex: 1;
-  padding: 20px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -108,19 +129,51 @@ export default {
   font-weight: 500;
 }
 
-.btn {
-  margin-right: 10px;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 8px;
-  background: #eee;
-  cursor: pointer;
-  font-size: 14px;
+/* Delivery Options Row */
+.delivery-options-row {
+  display: flex;
+  gap: 20px;
+  margin-top: 10px;
 }
 
-.btn.highlight {
-  background: #f7c948;
+/* Each Delivery Box */
+.delivery-box {
+  background: #eeeeee; /* required background */
+  border-radius: 12px;
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+}
+
+.time {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* Round Price Button */
+.price-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 50px; /* round */
+  background: black;
   color: white;
+  font-size: 13px;
+  cursor: pointer;
 }
 
 .add-cart {
@@ -148,19 +201,24 @@ export default {
   .image-box {
     height: 250px;
   }
+
+  .delivery-options-row {
+    flex-direction: column;
+  }
 }
+
 .villa_no {
   background-color: #e9eeed;
   height: 70px;
-  border-radius: 16px; /* smoother corners */
+  border-radius: 16px;
   margin-bottom: 10px;
   margin-right: 10px;
-  padding: 15px 20px; /* add space inside */
+  padding: 15px 20px;
   display: flex;
   align-items: center;
   font-size: 14px;
   color: #333;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* soft butter shadow */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .location-container {
@@ -170,34 +228,33 @@ export default {
 
 .addnewbutton {
   border-radius: 16px;
-  border: solid;
-  border-color: #999;
-  background-color: #ffffff;
+  background-color: white;
   height: 70px;
   width: 140px;
   display: flex;
-  flex-direction: column; /* stack vertically */
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   color: black;
-
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  padding-left: 15px; /* base padding */
+  margin-bottom: 3px;
 }
 
-.add-text {
-  line-height: 1.2;
-  padding-left: 15px;
+.plus {
+  font-size: 22px;
+  margin-bottom: 4px;
 }
 
-.new-text {
-  padding-left: 26px; /* 👈 indent "New" so it sits under ADD */
-  line-height: 1.2;
+.text-row {
+  display: flex;
+  gap: 6px;
+  font-size: 14px;
 }
 
 .addnewbutton:hover {
-  background-color: #15308c; /* darker blue */
-  transform: translateY(-2px); /* lift effect */
+  background-color: whitesmoke;
+  transform: translateY(-2px);
 }
 </style>
