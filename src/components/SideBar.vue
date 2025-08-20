@@ -97,14 +97,15 @@ import GroupImg from "../assets/GroupImg.png";
           <img :src="favoritesLogo" alt="Favorites" />
         </v-btn>
 
-        <v-btn icon class="mb-3 custom-icon-btn">
+        <v-btn icon class="mb-3 custom-icon-btn" :to="'/cart'" router>
           <img :src="bagLogo" alt="Bag" />
+        </v-btn>
+
+        <v-btn icon class="mb-3 custom-icon-btn">
+          <img :src="walletLogo" alt="Wallet" />
         </v-btn>
         <v-btn icon class="mb-3 custom-icon-btn">
           <img :src="chatLogo" alt="Chat" />
-        </v-btn>
-        <v-btn icon class="mb-3 custom-icon-btn">
-          <img :src="walletLogo" alt="Wallet" />
         </v-btn>
         <v-btn icon class="mb-3 custom-icon-btn">
           <img :src="SettingLogo" alt="Setting" />

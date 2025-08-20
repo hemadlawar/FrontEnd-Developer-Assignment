@@ -23,6 +23,7 @@ import ProductCard from "../components/ProductCard.vue"; // ✅ import
 
 const favouritesStore = useFavoritesStore();
 const { items } = storeToRefs(favouritesStore); // reactive
+console.log("ITEMS IN PRODUCT ARE", items);
 </script>
 
 <style scoped>
