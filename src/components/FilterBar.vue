@@ -103,7 +103,8 @@
 <script setup>
 import { ref, onMounted, watch, computed } from "vue";
 import { useCategoryStore } from "../stores/categoryStore";
-import { useProductStore } from "../stores/ProductStore";
+import { useProductStore } from "../stores/productStore";
+
 import ProductCard from "../components/ProductCard.vue";
 const search = ref("");
 const selectedCategory = ref(null);
