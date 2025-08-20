@@ -89,7 +89,7 @@ import GroupImg from "../assets/GroupImg.png";
         <span class="place-ad-text">Place<br />Ad</span>
 
         <!-- Other Icons -->
-        <v-btn icon class="mb-3 custom-icon-btn">
+        <v-btn icon class="mb-3 custom-icon-btn" :to="'/home'" router>
           <img :src="HomeLogo" alt="Home" />
         </v-btn>
         <!----------------------------------------------------------------------------------- favorite Icons -->
