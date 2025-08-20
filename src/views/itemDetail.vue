@@ -1,68 +1,76 @@
 <template>
-  <div class="container">
-    <!-- Left Side: Image -->
-    <div class="image-box">
-      <img src="https://via.placeholder.com/400x400" alt="Product" />
-    </div>
-
-    <!-- Right Side: Card -->
-    <div class="card">
-      <h2>Classy Crossbody Bag</h2>
-      <p class="subtitle">Women Leather Satchel Handbags</p>
-      <p class="price">IQD 983</p>
-      <p class="vat">Inclusive of VAT</p>
-
-      <div class="delivery">
-        <p>Delivery Options:</p>
-        <div class="location-container">
-          <!-- Address -->
-          <div class="villa_no">
-            Villa No. 2789, Khalifa City, Park Beside Quoz Mall, Abu Dhabi,
-            <br />
-            United Arab Emirates.
-          </div>
-
-          <!-- Add New Button -->
-          <div class="addnewbutton">
-            <span class="plus">+</span>
-            <div class="text-row">
-              <span>ADD</span>
-              <span>NEW</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Delivery Options side by side -->
-        <div class="delivery-options-row">
-          <!-- Standard Delivery -->
-          <!-- Standard Delivery -->
-          <div class="delivery-box">
-            <div class="top-row">
-              <span class="title">Standard Delivery</span>
-              <button class="price-btn">Free</button>
-            </div>
-            <span class="time">(5–7 Days)</span>
-          </div>
-
-          <!-- Express Delivery -->
-          <div class="delivery-box express">
-            <div class="top-row">
-              <span class="title">Express Delivery</span>
-              <button class="price-btn">+15 IQD</button>
-            </div>
-            <span class="time">(1–2 Days)</span>
-          </div>
-        </div>
+  <div>
+    <div class="container">
+      <!-- Left Side: Image -->
+      <div class="image-box">
+        <img src="https://via.placeholder.com/400x400" alt="Product" />
       </div>
 
-      <button class="add-cart">Add to Cart</button>
+      <!-- Right Side: Card -->
+      <div class="card">
+        <h2>Classy Crossbody Bag</h2>
+        <p class="subtitle">Women Leather Satchel Handbags</p>
+        <p class="price">IQD 983</p>
+        <p class="vat">Inclusive of VAT</p>
+
+        <div class="delivery">
+          <p>Delivery Options:</p>
+          <div class="location-container">
+            <!-- Address -->
+            <div class="villa_no">
+              Villa No. 2789, Khalifa City, Park Beside Quoz Mall, Abu Dhabi,
+              <br />
+              United Arab Emirates.
+            </div>
+
+            <!-- Add New Button -->
+            <div class="addnewbutton">
+              <span class="plus">+</span>
+              <div class="text-row">
+                <span>ADD</span>
+                <span>NEW</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Delivery Options side by side -->
+          <div class="delivery-options-row">
+            <!-- Standard Delivery -->
+            <!-- Standard Delivery -->
+            <div class="delivery-box">
+              <div class="top-row">
+                <span class="title">Standard Delivery</span>
+                <button class="price-btn">Free</button>
+              </div>
+              <span class="time">(5–7 Days)</span>
+            </div>
+
+            <!-- Express Delivery -->
+            <div class="delivery-box express">
+              <div class="top-row">
+                <span class="title">Express Delivery</span>
+                <button class="price-btn">+15 IQD</button>
+              </div>
+              <span class="time">(1–2 Days)</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="add-cart">Add to Cart</button>
+      </div>
     </div>
+    <CustomerReview />
   </div>
 </template>
 
 <script>
+import CustomerReview from "../components/CustomerReview.vue";
+
 export default {
   name: "ProductCard",
+  components: {
+    CustomerReview, // <-- register here
+  },
 };
 </script>
 
