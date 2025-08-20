@@ -2,7 +2,7 @@
   <v-card class="product-card">
     <!-- Image section with top icons -->
     <div class="image-wrapper">
-      <v-img :src="product.image" height="200px" contain />
+      <v-img :src="product.image" height="200px" contain @click="goToProduct" />
 
       <!-- New tag -->
       <div class="badge-left">New</div>
@@ -12,6 +12,7 @@
         <img :src="Newlogo" alt="Add to favourite" class="icon-img" />
       </div>
 
+      <!-- Like button -->
       <div class="badge-right" @click.stop="addToFavourites(product)">
         <img :src="Likelogo" alt="Like" class="icon-img" />
       </div>
@@ -25,7 +26,7 @@
     <v-card-subtitle> ${{ product.price }} </v-card-subtitle>
 
     <!-- Seller & Rating section -->
-    <div class="seller-rating" @click="goToProduct">
+    <div class="seller-rating">
       <img :src="UserIcon" alt="Seller" class="seller-avatar" />
       <span class="seller-name">Khalid S.</span>
       <v-icon color="green" small>mdi-check-decagram</v-icon>
@@ -40,20 +41,31 @@
 
     <!-- Static Size -->
     <div class="size-tag">Size: Medium</div>
+
+    <!-- ✅ Snackbar Toast -->
+    <v-snackbar
+      v-model="showToast"
+      color="green"
+      timeout="3000"
+      location="bottom right"
+    >
+      ✅ Added to favourites! Go to your favorites page to see it.
+    </v-snackbar>
   </v-card>
 </template>
 
 <script setup>
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useFavoritesStore } from "../stores/favoriteStore";
 import Newlogo from "../assets/New.png";
 import Likelogo from "../assets/Like.png";
 
-// ✅ Use remote image for user avatar
 const UserIcon = "https://randomuser.me/api/portraits/men/32.jpg";
 
 const router = useRouter();
 const favouritesStore = useFavoritesStore();
+
 const props = defineProps({
   product: {
     type: Object,
@@ -61,15 +73,19 @@ const props = defineProps({
   },
 });
 
+// ✅ Toast state
+const showToast = ref(false);
+
 function goToProduct() {
   router.push(`/item/${props.product.id}`);
 }
+
 function addToFavourites(product) {
-  console.log(product);
   favouritesStore.toggleFavorite(product);
-  //router.push("/favorite");
   console.log("Added to favourites:", product.title);
-  alert("go to favorite page to see your product");
+
+  // Show snackbar
+  showToast.value = true;
 }
 </script>
 
