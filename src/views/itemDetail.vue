@@ -35,6 +35,7 @@
         <!-- Delivery Options side by side -->
         <div class="delivery-options-row">
           <!-- Standard Delivery -->
+          <!-- Standard Delivery -->
           <div class="delivery-box">
             <div class="top-row">
               <span class="title">Standard Delivery</span>
@@ -44,7 +45,7 @@
           </div>
 
           <!-- Express Delivery -->
-          <div class="delivery-box">
+          <div class="delivery-box express">
             <div class="top-row">
               <span class="title">Express Delivery</span>
               <button class="price-btn">+15 IQD</button>
@@ -138,13 +139,23 @@ export default {
 
 /* Each Delivery Box */
 .delivery-box {
-  background: #eeeeee; /* required background */
+  background: #eeeeee; /* default for Standard */
   border-radius: 12px;
   padding: 15px;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+/* EXPRESS DELIVERY special styling */
+.delivery-box.express {
+  background: #fbce39; /* yellow */
+}
+
+.delivery-box.express .title,
+.delivery-box.express .time {
+  color: white; /* white text */
 }
 
 .top-row {
@@ -169,7 +180,7 @@ export default {
 .price-btn {
   padding: 6px 14px;
   border: none;
-  border-radius: 50px; /* round */
+  border-radius: 50px;
   background: black;
   color: white;
   font-size: 13px;
@@ -181,7 +192,7 @@ export default {
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background: #2563eb;
+  background: #10a3a7;
   color: white;
   font-size: 16px;
   font-weight: bold;
