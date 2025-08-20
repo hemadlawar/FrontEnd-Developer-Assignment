@@ -59,17 +59,19 @@
         <button class="add-cart">Add to Cart</button>
       </div>
     </div>
+    <seller-review />
     <CustomerReview />
   </div>
 </template>
 
 <script>
 import CustomerReview from "../components/CustomerReview.vue";
-
+import SellerReview from "../components/SellerReview.vue";
 export default {
   name: "ProductCard",
   components: {
-    CustomerReview, // <-- register here
+    CustomerReview,
+    SellerReview, // <-- register here
   },
 };
 </script>
