@@ -20,7 +20,14 @@
         >
           <!-- Product info -->
           <div class="d-flex align-center">
-            <v-img :src="item.image" max-width="80" class="rounded-lg mr-4" />
+            <v-img
+              :src="item.image"
+              width="80"
+              height="80"
+              class="rounded-lg mr-4"
+              cover
+            />
+
             <div>
               <h3 class="text-subtitle-1 font-weight-medium">
                 {{ item.title }}
@@ -76,7 +83,7 @@ import { onMounted } from "vue";
 import { useCartStore } from "../stores/cartStore";
 
 const cart = useCartStore();
-
+console.log("the cart is", cart);
 onMounted(() => {
   cart.fetchCart(3); // Fetch user cart
 });
