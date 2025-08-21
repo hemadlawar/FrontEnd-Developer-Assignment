@@ -198,4 +198,23 @@ import GroupImg from "../assets/GroupImg.png";
   font-size: 13px;
   font-weight: 400;
 }
+.logo-img {
+  max-height: 40px;
+}
+
+/* Tablet */
+@media (max-width: 960px) {
+  .logo-img {
+    max-width: 70px;
+    max-height: 36px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .logo-img {
+    max-width: 60px;
+    max-height: 32px;
+  }
+}
 </style>

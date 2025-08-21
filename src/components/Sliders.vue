@@ -10,21 +10,25 @@
           <!-- Left side (Details) -->
           <v-col
             cols="12"
-            sm="7"
+            md="7"
             class="d-flex flex-column justify-center text-left"
           >
             <h4 class="font-weight-bold mb-2">{{ product.brand }}</h4>
             <p class="mb-1">{{ product.name }}</p>
             <h3 class="font-weight-bold mb-2">{{ product.price }}</h3>
             <div>
-              <span v-for="size in product.sizes" :key="size" class="mr-2">{{
-                size
-              }}</span>
+              <span v-for="size in product.sizes" :key="size" class="mr-2">
+                {{ size }}
+              </span>
             </div>
           </v-col>
 
           <!-- Right side (Image) -->
-          <v-col cols="12" sm="5" class="d-flex justify-center align-center">
+          <v-col
+            cols="12"
+            md="5"
+            class="d-flex justify-center align-center mt-3 mt-md-0"
+          >
             <v-img :src="product.image" class="product-image" cover />
           </v-col>
         </v-row>
@@ -82,39 +86,76 @@ const products = [
 .product-card {
   width: 100%;
   max-width: 420px;
-  height: 180px;
   border-radius: 12px;
   display: flex;
   align-items: center;
+  padding: 14px;
+}
+
+/* Default Image */
+.product-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
 /* Desktop */
 @media (min-width: 960px) {
   .product-card {
-    max-width: 480px;
-    height: 200px;
-    border-radius: 20px;
+    max-width: 460px;
+    border-radius: 18px;
+    padding: 18px;
   }
   .product-image {
-    width: 150px;
-    height: 150px;
-    border-radius: 12px;
+    width: 140px;
+    height: 140px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 600px) and (max-width: 959px) {
+  .product-card {
+    max-width: 380px;
+    margin: auto;
+    padding: 14px;
+  }
+  .product-image {
+    width: 110px;
+    height: 110px;
   }
 }
 
 /* Mobile */
-@media (max-width: 600px) {
+@media (max-width: 599px) {
   .product-card {
-    width: 90% !important; /* ✅ make it fit screen */
-    max-width: 100% !important;
-    height: auto;
+    width: 85% !important;
+    max-width: 90% !important;
     border-radius: 10px !important;
-    margin: 0 auto; /* ✅ center the card */
+    margin: 0 auto 12px auto;
+    padding: 10px;
   }
   .product-image {
-    width: 100px;
-    height: 100px;
-    border-radius: 8px;
+    width: 70px;
+    height: 70px;
+    border-radius: 6px;
+  }
+
+  /* Shrink fonts */
+  .product-card h4 {
+    font-size: 12px;
+    margin-bottom: 2px;
+  }
+  .product-card p {
+    font-size: 11px;
+    margin-bottom: 2px;
+  }
+  .product-card h3 {
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .product-card span {
+    font-size: 11px;
   }
 }
 </style>
