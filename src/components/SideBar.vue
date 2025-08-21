@@ -32,12 +32,8 @@ import GroupImg from "../assets/GroupImg.png";
       </v-btn>
 
       <!-- Show logo only on desktop -->
-      <v-img
-        v-if="!mobile"
-        :src="GroupImg"
-        max-width="90"
-        class="ml-2 logo-img"
-      />
+      <!-- ✅ Always show logo (desktop, tablet, mobile) -->
+      <v-img :src="GroupImg" max-width="90" class="ml-2 logo-img"></v-img>
 
       <!-- Left Links -->
       <v-btn v-if="!mobile" variant="text" class="ml-16 small-link"
