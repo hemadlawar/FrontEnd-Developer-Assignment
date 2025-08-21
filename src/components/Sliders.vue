@@ -82,18 +82,10 @@ const products = [
 .product-card {
   width: 100%;
   max-width: 420px;
-  min-width: 360px;
   height: 180px;
-  border-radius: 12px; /* soft rounded corners */
+  border-radius: 12px;
   display: flex;
   align-items: center;
-}
-
-.product-image {
-  width: 130px;
-  height: 130px;
-  border-radius: 10px; /* rounded image corners */
-  object-fit: cover;
 }
 
 /* Desktop */
@@ -101,7 +93,7 @@ const products = [
   .product-card {
     max-width: 480px;
     height: 200px;
-    border-radius: 20px; /* slightly more on bigger screens */
+    border-radius: 20px;
   }
   .product-image {
     width: 150px;
@@ -113,9 +105,11 @@ const products = [
 /* Mobile */
 @media (max-width: 600px) {
   .product-card {
-    max-width: 95% !important;
+    width: 90% !important; /* ✅ make it fit screen */
+    max-width: 100% !important;
     height: auto;
     border-radius: 10px !important;
+    margin: 0 auto; /* ✅ center the card */
   }
   .product-image {
     width: 100px;

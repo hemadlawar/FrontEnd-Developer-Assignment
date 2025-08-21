@@ -5,8 +5,11 @@ import { useDisplay } from "vuetify";
 // Cart count
 const cartCount = ref(3);
 
-// Detect mobile screen
+// Detect screen size
 const { mobile } = useDisplay();
+
+// Sidebar state
+const drawer = ref(!mobile.value); // open on desktop, closed on mobile
 
 // Assets
 import chatLogo from "../assets/Chat.png";
@@ -23,17 +26,26 @@ import GroupImg from "../assets/GroupImg.png";
   <v-app>
     <!-- ✅ TOP NAVIGATION BAR -->
     <v-app-bar app flat color="white" class="px-4">
+      <!-- Sidebar toggle on mobile -->
+      <v-btn icon class="mr-2" v-if="mobile" @click="drawer = !drawer">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
+
       <!-- Show logo only on desktop -->
       <v-img
         v-if="!mobile"
         :src="GroupImg"
         max-width="90"
         class="ml-2 logo-img"
-      ></v-img>
+      />
 
       <!-- Left Links -->
-      <v-btn variant="text" class="ml-16 small-link">How It Works?</v-btn>
-      <v-btn variant="text" class="ml-2 small-link">Help & Support</v-btn>
+      <v-btn v-if="!mobile" variant="text" class="ml-16 small-link"
+        >How It Works?</v-btn
+      >
+      <v-btn v-if="!mobile" variant="text" class="ml-2 small-link"
+        >Help & Support</v-btn
+      >
 
       <v-spacer />
 
@@ -56,13 +68,15 @@ import GroupImg from "../assets/GroupImg.png";
       <v-avatar size="36" class="ml-3">
         <v-img src="https://randomuser.me/api/portraits/men/32.jpg" />
       </v-avatar>
-      <span class="ml-2">M. Khalid Saied</span>
+      <span class="ml-2" v-if="!mobile">M. Khalid Saied</span>
     </v-app-bar>
 
     <!-- ✅ SIDEBAR -->
     <v-navigation-drawer
+      v-model="drawer"
       app
-      permanent
+      :permanent="!mobile"
+      :temporary="mobile"
       :width="80"
       :class="{ 'mobile-drawer': mobile }"
     >
@@ -71,12 +85,7 @@ import GroupImg from "../assets/GroupImg.png";
         class="d-flex flex-column align-center sidebar-list"
       >
         <!-- Logo on mobile -->
-        <v-img
-          v-if="mobile"
-          :src="GroupImg"
-          max-width="60"
-          class="mb-4 mt-2"
-        ></v-img>
+        <v-img v-if="mobile" :src="GroupImg" max-width="60" class="mb-4 mt-2" />
 
         <!-- Place Ad -->
         <v-btn class="mb-2 place-ad-btn" variant="text" min-width="0">
@@ -92,7 +101,7 @@ import GroupImg from "../assets/GroupImg.png";
         <v-btn icon class="mb-3 custom-icon-btn" :to="'/home'" router>
           <img :src="HomeLogo" alt="Home" />
         </v-btn>
-        <!----------------------------------------------------------------------------------- favorite Icons -->
+
         <v-btn icon class="mb-3 custom-icon-btn" :to="'/favorite'" router>
           <img :src="favoritesLogo" alt="Favorites" />
         </v-btn>
